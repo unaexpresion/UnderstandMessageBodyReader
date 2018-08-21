@@ -1,0 +1,56 @@
+/*buildscript {
+	ext {
+		springBootVersion = '2.0.4.RELEASE'
+	}
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
+}*/
+
+apply plugin: 'war'
+apply plugin: 'eclipse-wtp'
+// spring boot
+// apply plugin: 'org.springframework.boot'
+// apply plugin: 'io.spring.dependency-management'
+
+sourceCompatibility = 1.8
+version = '1.0'
+jar {
+    manifest {
+        attributes 'Implementation-Title': 'Gradle Quickstart',
+                   'Implementation-Version': version
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile group: 'commons-collections', name: 'commons-collections', version: '3.2'
+    // spring boot
+    // compile('org.springframework.boot:spring-boot-starter')
+    // compile group: 'org.jboss.resteasy', name: 'resteasy-spring-boot-starter', version: '2.0.1.Final'
+	compile group: 'javax.ws.rs', name: 'javax.ws.rs-api', version: '2.1'
+	compile group: 'org.jboss.resteasy', name: 'resteasy-jaxrs', version: '3.6.1.Final'
+	compile group: 'org.jboss.resteasy', name: 'resteasy-servlet-initializer', version: '3.1.2.Final'
+	compile group: 'org.jboss.resteasy', name: 'resteasy-jackson-provider', version: '3.6.1.Final'
+	compile group: 'org.jboss.resteasy', name: 'resteasy-client', version: '3.6.1.Final'
+	
+    testCompile group: 'junit', name: 'junit', version: '4.+'
+}
+
+test {
+    systemProperties 'property': 'value'
+}
+
+uploadArchives {
+    repositories {
+       flatDir {
+           dirs 'repos'
+       }
+    }
+}
